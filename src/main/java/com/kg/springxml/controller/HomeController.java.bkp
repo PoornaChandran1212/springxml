@@ -1,0 +1,71 @@
+package com.kg.springxml.controller;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+// import java.util.ArrayList;
+
+import org.springframework.stereotype.Controller;
+// import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+@RequestMapping("/")
+
+public class HomeController {
+    @PostConstruct
+    public void turnOn() {
+        System.out.println("Load operating system");
+    }
+    @RequestMapping(method = RequestMethod.GET)
+
+    
+
+    // public ModelAndView helloWorld() {
+    // String message = "Hello World!";
+    // System.out.println("The message is::"+message);
+    // return new ModelAndView("index", "message", message);
+    // }
+    // @ModelAttribute
+    public String hello(ModelMap map) {
+        String message = "Hello world!";
+        String message1 = "Welcome!";
+        map.addAttribute("helloMessage", message);
+        map.addAttribute("welcomeMessage", message1);
+        System.out.println("The message is::" + map);
+
+        return "index";
+    }
+
+    // public void processForm(@ModelAttribute("model") Model model) {
+    // model.getClass();
+
+    // }
+    @ModelAttribute
+    public void addAttributes(Model nok) {
+        nok.addAttribute("msg", "Welcome to the Netherlands!");
+        System.out.println("The message is::" + nok);
+    }
+
+    @ModelAttribute
+    public void addAttributes1(Model nok) {
+        nok.addAttribute("msg1111", "Welcome to the Netherlands!!");
+        System.out.println("The message is::" + nok);
+    }
+
+    // public String printHello(Model model) {
+    // model.addAttribute("message", "Hello World!!");
+    // model.addAttribute("message1", "Hello user!!");
+    // System.out.println("The message is::"+model);
+    // return "index";
+    // }
+
+    @PreDestroy
+    public void turnOff() {
+        System.out.println("Close all programs");
+    }
+}
